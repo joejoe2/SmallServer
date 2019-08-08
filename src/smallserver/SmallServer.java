@@ -152,7 +152,7 @@ public class SmallServer {
                 
             }else if(Integer.parseInt(action)==ACTION_CODE_DOWNLOAD){
                 String  f=msg.substring(msg.indexOf("file:")+5,msg.indexOf(",",msg.indexOf("file:")));
-                System.out.println(user+" request download "+f+"from "+client.getInetAddress().toString()+" port:"+client.getPort()+" at "+LocalDateTime.now()+" port:"+entry);
+                System.out.println(user+" request download "+f+" from "+client.getInetAddress().toString()+" port:"+client.getPort()+" at "+LocalDateTime.now()+" port:"+entry);
                 File file=new File(f);
                 Thread dThread=new Thread(() -> {
                     try {
@@ -193,8 +193,8 @@ public class SmallServer {
                 });
                   dThread.start();
             }else if(Integer.parseInt(action)==ACTION_CODE_UPLOAD){
-                String  f=msg.substring(msg.indexOf("file:")+5,msg.indexOf(",",msg.indexOf("file:")));
-                System.out.println(user+" request upload "+f+"from "+client.getInetAddress().toString()+" port:"+client.getPort()+" at "+LocalDateTime.now()+" port:"+entry);
+                String  f=root+"/"+msg.substring(msg.indexOf("file:")+5,msg.indexOf(",",msg.indexOf("file:")));
+                System.out.println(user+" request upload "+f+" from "+client.getInetAddress().toString()+" port:"+client.getPort()+" at "+LocalDateTime.now()+" port:"+entry);
                 Thread upThread=new Thread(() -> {
                     BufferedInputStream buf=null;
                     try {
